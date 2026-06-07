@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/eyedeekay/go-i2pcontrol"
+	"github.com/go-i2p/go-i2pcontrol"
 )
 
 var usage = `i2p-control
@@ -27,7 +27,7 @@ terminal i2pcontrol client.
 
 Installation with go get
 
-        go get -u github.com/eyedeekay/i2p-control
+        go get -u github.com/go-i2p/i2p-control
 
 The methods that have been implemented are
 
@@ -96,6 +96,12 @@ func main() {
 	switch *command {
 	case "echo":
 		message, err := i2pcontrol.Echo(strings.Join(flag.Args(), " "))
+		if err != nil {
+			log.Fatal(err)
+		}
+		log.Println(message)
+	case "ident":
+		message, err := i2pcontrol.RouterHash()
 		if err != nil {
 			log.Fatal(err)
 		}

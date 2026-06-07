@@ -24,6 +24,7 @@ The methods that have been implemented are
         graceful-shutdown : i2pcontrol:ShutdownGraceful
         update            : i2pcontrol:Update
         find-update       : i2pcontrol:FindUpdate
+        ident             : i2pcontrol:RouterInfo:hash(go-i2p only)
 
 So, for instance, to initiate a graceful shutdown and block until the router is
 shut down, use the command:
