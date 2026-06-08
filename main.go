@@ -8,45 +8,6 @@ import (
 	"github.com/go-i2p/i2p-control/lib"
 )
 
-var usage = `i2p-control
-===========
-
-Terminal interface to monitor and manage I2P router service. Basically, an
-terminal i2pcontrol client.
-
-        -host default:"127.0.0.1"
-        -port default:"7657"
-        -path default:"jsonrpc"
-        -password default:"itoopie"
-        -method default:"echo"
-        -block default:false
-        -verbose default:false
-
-Installation with go get
-
-        go get -u github.com/go-i2p/i2p-control
-
-The methods that have been implemented are
-
-        echo              : i2pcontrol:Echo
-        stat              : i2pcontrol:RouterInfo:i2p.router.status
-        netstat           : i2pcontrol:RouterInfo:i2p.router.net.router.status
-        tunstat           : i2pcontrol:RouterInfo:i2p.router.net.tunnels.participating
-        restart           : i2pcontrol:Restart
-        graceful-restart  : i2pcontrol:RestartGraceful
-        shutdown          : i2pcontrol:Shutdown
-        graceful-shutdown : i2pcontrol:ShutdownGraceful
-        update            : i2pcontrol:Update
-        find-update       : i2pcontrol:FindUpdate
-		ident             : i2pcontrol:RouterInfo:hash(go-i2p only)
-
-So, for instance, to initiate a graceful shutdown and block until the router is
-shut down, use the command:
-
-        i2p-control -block -method=graceful-shutdown
-
-`
-
 var (
 	host     = flag.String("host", "localhost", "Host of the i2pcontrol interface")
 	port     = flag.String("port", "7657", "Port of the i2pcontrol interface")
@@ -63,7 +24,7 @@ var (
 func main() {
 	flag.Parse()
 	if *shelp || *lhelp {
-		fmt.Printf(usage)
+		fmt.Printf(lib.Usage)
 		return
 	}
 
