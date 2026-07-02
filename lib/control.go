@@ -99,6 +99,13 @@ func (c *Client) logVerbose(msg string) {
 	}
 }
 
+func normalizeRateStatName(stat string) string {
+	if strings.EqualFold(stat, "ntcp.activePeers") {
+		return "tcp.activePeers"
+	}
+	return stat
+}
+
 // Execute runs a command and returns the result.
 func (c *Client) Execute(command string, opts CommandOptions) CommandResult {
 	result := CommandResult{
@@ -257,7 +264,7 @@ func (c *Client) Execute(command string, opts CommandOptions) CommandResult {
 			result.Error = err
 			break
 		}
-		message, err := i2pcontrol.RateStat(opts.Args[0], interval)
+		message, err := i2pcontrol.RateStat(normalizeRateStatName(opts.Args[0]), interval)
 		if err != nil {
 			result.Success = false
 			result.Error = err
