@@ -24,7 +24,7 @@ var (
 func main() {
 	flag.Parse()
 	if *shelp || *lhelp {
-		fmt.Printf(lib.Usage)
+		fmt.Printf("%s", lib.Usage)
 		return
 	}
 
